@@ -1,0 +1,658 @@
+/* --- RESET & BASIC SETUP --- */
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-dark: #050505;
+    --bg-panel: #111111;
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff00ff;
+    --neon-purple: #bc13fe;
+    --text-main: #e0e0e0;
+    --font-header: 'Orbitron', sans-serif;
+    --font-body: 'Roboto Mono', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-main);
+    background-color: var(--bg-dark);
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    overflow-x: hidden;
+}
+
+/* --- EFEK TAMBAHAN --- */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0, 0, 0, 0.5) 3px,
+        rgba(0, 0, 0, 0.5) 4px
+    );
+    pointer-events: none;
+    z-index: 99;
+    opacity: 0.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- TYPOGRAPHY --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-header);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.neon-blue { color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue); }
+.neon-pink { color: var(--neon-pink); text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); }
+.neon-purple { color: var(--neon-purple); text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple); }
+
+/* --- HERO SECTION --- */
+.hero {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column; /* Biar susun ke bawah rapi */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 60px;
+}
+
+.profile-frame {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 30px;
+    position: relative;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px var(--bg-dark), 
+                0 0 0 8px var(--neon-blue), 
+                0 0 20px var(--neon-blue),
+                0 0 0 12px var(--neon-pink);
+    overflow: hidden;
+    
+    /* Animasi Masuk */
+    opacity: 0;
+    animation: masukDariBawah 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.profile-pic {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(50%) contrast(120%);
+    transition: transform 0.5s;
+}
+
+.profile-frame:hover .profile-pic {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* --- 1. JUDUL UTAMA (NAMA) --- */
+.hero h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #fff;
+    white-space: nowrap;
+    text-shadow: 1px 1px 0px var(--neon-pink), -1px -1px 0px var(--neon-blue);
+    
+    /* Animasi Masuk Nama */
+    opacity: 0;
+    animation: masukDariBawah 1.5s ease-out forwards;
+    animation-delay: 0.8s;
+}
+
+/* Responsif HP buat Nama */
+@media (max-width: 768px) {
+    .hero h1 {
+        white-space: normal;
+        font-size: 1.5rem;
+    }
+}
+
+/* --- 2. TAGLINE (I AM A... + KETIKAN) --- */
+.tagline {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    
+    /* INI KUNCINYA BIAR GAK MUNCUL DULUAN */
+    opacity: 0; 
+    
+    /* Animasi muncul pelan (Fade In) */
+    animation: munculPelan 1s ease-out forwards;
+    
+    /* DIA NUNGGU 2.5 DETIK BARU MULAI MUNCUL */
+    animation-delay: 2.5s; 
+}
+
+/* Pastikan Keyframes ini ada di paling bawah CSS lo */
+@keyframes munculPelan {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes masukDariBawah {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.cyber-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: transparent;
+    color: var(--neon-blue);
+    border: 2px solid var(--neon-blue);
+    font-family: var(--font-header);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+    
+    /* Animasi Masuk */
+    opacity: 0;
+    animation: masukDariBawah 1.5s ease-out forwards;
+    animation-delay: 1.2s;
+}
+
+.cyber-btn:hover {
+    background: var(--neon-blue);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+
+/* --- GENERAL SECTIONS --- */
+.section { padding: 80px 0; }
+
+.cyber-box {
+    background: rgba(17, 17, 17, 0.8);
+    padding: 40px;
+    border: 1px solid var(--neon-purple);
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
+    position: relative;
+}
+.cyber-box::before {
+    content: ''; position: absolute; top: -2px; left: -2px;
+    width: 20px; height: 20px; border-top: 2px solid var(--neon-blue); border-left: 2px solid var(--neon-blue);
+}
+
+/* --- EXPERIENCE / TIMELINE --- */
+.timeline-item {
+    background: rgba(17, 17, 17, 0.8);
+    padding: 25px;
+    margin-bottom: 30px;
+    border-left: 4px solid #555;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.timeline-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px var(--neon-blue);
+    z-index: 10;
+}
+
+.cyber-border-blue { border-left-color: var(--neon-blue); box-shadow: -5px 0 15px rgba(0, 243, 255, 0.2); }
+.cyber-border-pink { border-left-color: var(--neon-pink); box-shadow: -5px 0 15px rgba(255, 0, 255, 0.2); }
+
+.badge-blue, .badge-pink {
+    display: inline-block; padding: 5px 10px; font-size: 0.8rem; font-weight: bold; margin-bottom: 10px; color: var(--bg-dark);
+}
+.badge-blue { background: var(--neon-blue); }
+.badge-pink { background: var(--neon-pink); }
+
+/* --- LANGUAGE SKILLS --- */
+.lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.lang-item {
+    background: rgba(17, 17, 17, 0.8);
+    border: 1px solid #333;
+    padding: 25px;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%); 
+    transition: transform 0.3s;
+}
+.lang-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-blue);
+}
+
+.lang-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.lang-info h3 { font-size: 1.1rem; color: #fff; }
+.level { font-size: 0.8rem; color: #aaa; border: 1px solid #555; padding: 2px 8px; border-radius: 4px; }
+
+.cyber-progress-bar {
+    width: 100%; height: 10px; background: #222; border: 1px solid #444; margin-bottom: 15px; position: relative; overflow: hidden;
+}
+.progress-fill { height: 100%; position: relative; }
+.progress-fill::after {
+    content: ''; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+    background-image: linear-gradient(45deg, rgba(0,0,0,0.2) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2) 75%, transparent 75%, transparent);
+    background-size: 20px 20px;
+}
+.neon-blue-bg { background-color: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
+.neon-pink-bg { background-color: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); }
+.lang-desc { font-size: 0.85rem; color: #ccc; font-style: italic; }
+
+/* --- ICON SOSMED CYBERPUNK --- */
+.social-links {
+    margin-top: 30px;
+    display: flex; /* Biar jejer ke samping rapi */
+    justify-content: center;
+    gap: 30px; /* Jarak antar ikon */
+}
+
+.cyber-icon {
+    font-size: 2.5rem; /* Ukuran ikon (Gedein angkanya kalo kurang gede) */
+    color: var(--text-main); /* Warna awal (abu terang) */
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+/* EFEK HOVER (Pas Mouse Nempel) */
+.cyber-icon:hover {
+    transform: translateY(-10px) scale(1.1); /* Naik ke atas + nge-zoom dikit */
+}
+
+/* Warna Khusus Tiap Sosmed pas Hover */
+/* Instagram (Pakai warna Pink Neon kita) */
+.cyber-icon:hover .fa-instagram {
+    color: var(--neon-pink);
+    text-shadow: 0 0 20px var(--neon-pink);
+}
+
+/* WhatsApp (Hijau Neon - Kita bikin manual warnanya disini) */
+.cyber-icon:hover .fa-whatsapp {
+    color: #00ff88; 
+    text-shadow: 0 0 20px #00ff88;
+}
+
+/* LinkedIn (Biru Neon kita) */
+.cyber-icon:hover .fa-linkedin {
+    color: var(--neon-blue);
+    text-shadow: 0 0 20px var(--neon-blue);
+}
+
+/* Email (Ungu Neon kita) */
+.cyber-icon:hover .fa-envelope {
+    color: var(--neon-purple);
+    text-shadow: 0 0 20px var(--neon-purple);
+}
+
+/* --- FOOTER --- */
+footer { text-align: center; padding: 40px; color: #666; font-size: 0.9rem; }
+
+/* --- KEYFRAME ANIMASI (PENTING) --- */
+@keyframes masukDariBawah {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+/* --- UPDATE CSS BUAT FITUR BARU --- */
+
+/* 1. Tombol di Hero (Biar ada jarak antara Contact & CV) */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    
+    /* Animasi Masuk */
+    opacity: 0;
+    animation: masukDariBawah 1.5s ease-out forwards;
+    animation-delay: 1.2s;
+}
+
+/* Tombol Secondary (CV) - Warnanya beda dikit (Pink) */
+.cyber-btn-secondary {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+}
+.cyber-btn-secondary:hover {
+    background: var(--neon-pink);
+    box-shadow: 0 0 20px var(--neon-pink);
+}
+
+/* 2. Layout Experience Baru (Kiri Teks - Kanan Foto) */
+.timeline-item {
+    display: flex; /* Kuncinya disini: Jejerin ke samping */
+    align-items: center; /* Biar vertikal tengah */
+    justify-content: space-between;
+    gap: 30px; /* Jarak teks ke foto */
+}
+
+/* Bagian Teks */
+.exp-content {
+    flex: 1; /* Ambil sisa ruang yang ada */
+}
+
+/* Bagian Foto */
+.exp-image {
+    flex-shrink: 0; /* Jangan mau diperes ukurannya */
+    width: 200px;   /* Lebar foto */
+    height: 120px;  /* Tinggi foto */
+    border: 2px solid var(--neon-blue); /* Bingkai foto */
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.exp-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Biar foto ga gepeng */
+}
+
+/* Efek Hover di Foto Experience */
+.timeline-item:hover .exp-image {
+    transform: scale(1.1); /* Nge-zoom dikit pas hover */
+    border-color: #fff;
+}
+
+/* Layout Responsif (Khusus HP) */
+@media (max-width: 768px) {
+    .timeline-item {
+        flex-direction: column; /* Balik jadi susun ke bawah */
+        text-align: left;
+    }
+    
+    .exp-image {
+        width: 100%; /* Foto jadi lebar full di HP */
+        height: 200px;
+        margin-top: 15px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column; /* Tombol CV jadi di bawah Contact pas di HP */
+        width: 100%;
+    }
+    
+    .cyber-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Tambahan Warna Ungu buat Bahasa Jawa */
+.neon-purple-bg { 
+    background-color: var(--neon-purple); 
+    box-shadow: 0 0 10px var(--neon-purple); 
+}
+/* --- NAVBAR CYBERPUNK --- */
+.cyber-navbar {
+    position: fixed; /* Nempel terus di atas */
+    top: 0; left: 0; width: 100%;
+    background: rgba(5, 5, 5, 0.85); /* Agak transparan */
+    backdrop-filter: blur(10px); /* Efek kaca buram (Glassmorphism) */
+    border-bottom: 1px solid var(--neon-blue);
+    z-index: 1000; /* Pastikan dia di atas segalanya */
+    padding: 15px 0;
+    transition: 0.3s;
+}
+
+.nav-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-header);
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.neon-dot { color: var(--neon-pink); animation: kedip 1s infinite; }
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    transition: 0.3s;
+    position: relative;
+}
+
+/* Efek Garis Bawah pas Hover */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0; height: 2px;
+    bottom: -5px; left: 0;
+    background-color: var(--neon-pink);
+    transition: width 0.3s;
+}
+
+.nav-link:hover {
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.nav-link:hover::after {
+    width: 100%; /* Garisnya memanjang */
+}
+
+@keyframes kedip { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Responsif buat HP (Menu jadi kecil/ilang dulu biar ga penuh) */
+@media (max-width: 768px) {
+    .nav-menu { display: none; } /* Sementara di HP diumpetin dulu biar ga ribet */
+    .nav-container { justify-content: center; }
+}
+/* --- TYPEWRITER CURSOR --- */
+.typing-text {
+    color: var(--neon-pink); /* Teks yang ngetik warnanya Pink */
+    font-weight: bold;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--neon-blue); /* Kursornya warna Biru */
+    animation: kedip 1s infinite;
+    margin-left: 2px;
+}
+
+/* Animasi Kursor Kedip */
+@keyframes kedip {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+/* --- 1. ATUR JARAK TOMBOL --- */
+.hero-buttons {
+    display: flex;
+    gap: 20px;            /* Jarak antara tombol Kiri dan Kanan */
+    margin-top: 35px;     /* Jarak dari Teks atas ke Tombol */
+    justify-content: center;
+    flex-wrap: wrap;      /* Biar aman kalau di HP layar kecil */
+}
+
+/* --- 2. HAPUS GARIS-GARIS (SCANLINES) --- */
+/* Pastikan class ini kosong atau display: none */
+.scanlines {
+    display: none !important;
+    background: none !important;
+}
+
+/* Cek juga bagian .hero, kalau ada ::after atau ::before yang bikin garis */
+.hero::before, 
+.hero::after {
+    background-image: none !important; /* Mematikan background garis */
+    background: none !important;
+    display: none !important; /* Hilangkan overlay */
+}
+/* Styling Tombol Hamburger */
+.menu-toggle {
+    display: none; /* Di Laptop ilang */
+    flex-direction: column;
+    cursor: pointer;
+}
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--neon-blue);
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* Tampilan Mobile */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Di HP Muncul */
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 60px; /* Tinggi navbar */
+        right: -100%; /* Ngumpet di kanan layar */
+        flex-direction: column;
+        background-color: rgba(5, 5, 5, 0.95);
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        transition: 0.3s;
+        border-bottom: 2px solid var(--neon-pink);
+    }
+
+    .nav-menu.active {
+        right: 0; /* Munculin menu pas diklik */
+    }
+    
+    .nav-menu li {
+        margin: 15px 0;
+    }
+}
+/* --- PORTFOLIO / CYBER CARD --- */
+.cyber-card-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.cyber-card {
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--neon-blue);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+/* Efek Hover di Card */
+.cyber-card:hover {
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Garis dekorasi miring di background */
+.cyber-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 5px; height: 100%;
+    background: var(--neon-blue);
+}
+
+.card-icon {
+    font-size: 4rem;
+    color: var(--neon-blue);
+}
+
+.card-text h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.card-text p {
+    color: #ccc;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.full-width-btn {
+    width: 100%;
+    text-align: center;
+    display: block; /* Biar tombol ngisi penuh lebar */
+}
+
+/* Animasi Denyut di Icon Folder */
+@keyframes neonPulse {
+    0% { text-shadow: 0 0 5px var(--neon-blue); }
+    50% { text-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue); }
+    100% { text-shadow: 0 0 5px var(--neon-blue); }
+}
+
+.neon-pulse {
+    animation: neonPulse 2s infinite;
+}
+
+/* Responsif buat HP (biar susun ke bawah) */
+@media (max-width: 768px) {
+    .cyber-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .cyber-card::before {
+        width: 100%; height: 5px; /* Pindah garis ke atas kalau di HP */
+    }
+}
+/* --- BACKGROUND ANIMATION --- */
+#cyber-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -999; /* Paling belakang */
+    background: #050505; /* Warna dasar hitam pekat */
+}
+/* --- ANIMASI SCROLL (FADE IN UP) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px); /* Geser ke bawah dikit */
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0); /* Balik ke posisi asal */
+}
