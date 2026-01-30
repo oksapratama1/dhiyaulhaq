@@ -20,6 +20,20 @@
     <meta property="og:image" content="https://dhiyaulhaq.vercel.app/logokecil.jpg">
 </head>
 <body>
+    <div id="preloader">
+    <div class="loader-content">
+        <div class="scanner-ring"></div>
+        
+        <div class="loading-text">SYSTEM INITIALIZING...</div>
+        
+        <div class="loading-bar-container">
+            <div class="loading-bar-fill"></div>
+        </div>
+        
+        <p class="loading-subtext">ACCESSING DATABASE // SECURE CONNECTION</p>
+    </div>
+    </div>
+    
 <canvas id="cyber-background"></canvas>
     <nav class="cyber-navbar">
         <div class="nav-container">
@@ -339,11 +353,20 @@
             navMenu.classList.remove('active');
         }));
 
-        // --- 3. JALANKAN SEMUA SAAT WEBSITE SIAP ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Delay ngetik biar sinkron sama animasi CSS
-            setTimeout(typeEffect, 2600); 
-        });
+        // --- 6. LOGIKA PRELOADER (LOADING SCREEN) ---
+// Jalankan pas halaman dimuat
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    
+    // Tahan 2.2 detik (biar animasi bar selesai dulu)
+    setTimeout(() => {
+        preloader.classList.add('preloader-hide'); // Efek fade out (hilang pelan2)
+    }, 2200);
+
+    // KARENA ADA LOADING, KITA MUNDURIN DIKIT START NGETIKNYA
+    // Biar pas loading ilang, baru mulai ngetik
+    setTimeout(typeEffect, 2800); 
+});
 // --- 4. EFEK BACKGROUND CYBER NETWORK ---
 const canvas = document.getElementById('cyber-background');
 const ctx = canvas.getContext('2d');
@@ -459,6 +482,7 @@ revealOnScroll();
 </body>
 
 </html>
+
 
 
 
