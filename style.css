@@ -758,3 +758,92 @@ footer { text-align: center; padding: 40px; color: #666; font-size: 0.9rem; }
     color: var(--neon-blue);
     text-shadow: 0 0 20px var(--neon-blue);
 }
+CSS TAMBAHAN: TECH ARSENAL (SKILLS)
+   ========================================= */
+
+.skills-grid {
+    display: grid;
+    /* Grid Otomatis: Minimal lebar 140px, sisanya menyesuaikan layar */
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 25px; /* Jarak antar kotak */
+    margin-top: 30px;
+}
+
+.skill-card {
+    background: rgba(17, 17, 17, 0.8); /* Background gelap transparan */
+    padding: 25px 15px;
+    text-align: center;
+    border: 1px solid #333; /* Border awal samar */
+    border-radius: 10px;
+    transition: all 0.3s ease; /* Animasi halus */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gaya Ikon Awal */
+.skill-icon {
+    font-size: 3rem; /* Ukuran Ikon Besar */
+    margin-bottom: 15px;
+    color: #888; /* Warna awal abu-abu mati */
+    transition: all 0.3s ease;
+}
+
+/* Gaya Teks Nama Aplikasi */
+.skill-card h3 {
+    font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif; /* Font kotak futuristik */
+    letter-spacing: 1px;
+    color: var(--text-main);
+    text-transform: uppercase;
+}
+
+/* --- EFEK HOVER (PAS DISENTUH MOUSE) --- */
+
+/* 1. Kotaknya naik dikit */
+.skill-card:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* 2. Warna Neon Berdasarkan Class Border-nya */
+
+/* Kalau classnya cyber-border-pink */
+.cyber-border-pink:hover { 
+    border-color: var(--neon-pink); 
+    box-shadow: 0 0 15px var(--neon-pink); /* Glow Pink di border */
+}
+.cyber-border-pink:hover .skill-icon { 
+    color: var(--neon-pink); 
+    text-shadow: 0 0 15px var(--neon-pink); /* Ikonnya jadi Pink Nyala */
+}
+
+/* Kalau classnya cyber-border-blue */
+.cyber-border-blue:hover { 
+    border-color: var(--neon-blue); 
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+.cyber-border-blue:hover .skill-icon { 
+    color: var(--neon-blue); 
+    text-shadow: 0 0 15px var(--neon-blue);
+}
+
+/* Kalau classnya cyber-border-purple (Kita manfaatin var yg udah ada) */
+.skill-card.cyber-border-purple:hover { 
+    border-color: var(--neon-purple); 
+    box-shadow: 0 0 15px var(--neon-purple);
+}
+.skill-card.cyber-border-purple:hover .skill-icon { 
+    color: var(--neon-purple); 
+    text-shadow: 0 0 15px var(--neon-purple);
+}
+
+/* Khusus HP biar gridnya ga terlalu dempet */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr); /* Di HP jadi 2 kolom */
+        gap: 15px;
+    }
+    .skill-icon {
+        font-size: 2.5rem; /* Ikon agak kecil di HP */
+    }
+}
