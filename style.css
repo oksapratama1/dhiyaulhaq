@@ -655,4 +655,106 @@ footer { text-align: center; padding: 40px; color: #666; font-size: 0.9rem; }
 .reveal.active {
     opacity: 1;
     transform: translateY(0); /* Balik ke posisi asal */
+
+}
+/* =========================================
+   1. CSS KHUSUS TAMPILAN HP (MOBILE MENU)
+   ========================================= */
+/* Tombol Garis Tiga (Hamburger) */
+.menu-toggle {
+    display: none; /* Di Laptop ngumpet */
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--neon-blue);
+    margin: 4px 0;
+    transition: 0.4s;
+    border-radius: 2px;
+}
+
+/* Logika Tampilan di Layar Kecil (HP/Tablet) */
+@media (max-width: 768px) {
+    /* Munculkan Tombol Garis Tiga */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Atur Menu Navigasi jadi Dropdown */
+    .nav-menu {
+        position: fixed; /* Nempel di layar */
+        top: 60px;       /* Muncul di bawah navbar */
+        right: -100%;    /* Ngumpet di kanan layar */
+        flex-direction: column;
+        background-color: rgba(5, 5, 5, 0.95); /* Background gelap transparan */
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        transition: 0.3s ease-in-out;
+        border-bottom: 2px solid var(--neon-pink);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    /* Class ini ditambahin otomatis sama Script JS lo pas diklik */
+    .nav-menu.active {
+        right: 0; /* Geser menu ke tengah layar */
+    }
+
+    .nav-menu li {
+        margin: 20px 0;
+    }
+    
+    /* Efek tombol X (silang) pas menu kebuka */
+    .nav-menu.active + .menu-toggle .bar:nth-child(2) { opacity: 0; }
+    .nav-menu.active + .menu-toggle .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-menu.active + .menu-toggle .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+}
+
+
+/* =========================================
+   2. CSS EFEK IKON KONTAK (GLOW & BOUNCE)
+   ========================================= */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.cyber-icon {
+    font-size: 2.5rem; /* Ukuran Ikon */
+    color: #888;       /* Warna awal abu-abu */
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* Pas Mouse Nempel (Hover) */
+.cyber-icon:hover {
+    transform: translateY(-10px) scale(1.1); /* Naik ke atas + Membesar dikit */
+    color: #fff; /* Jadi Putih */
+}
+
+/* Warna Spesifik Tiap Sosmed pas Hover (Biar Keren) */
+.cyber-icon:hover .fa-instagram {
+    color: #E1306C;
+    text-shadow: 0 0 20px #E1306C;
+}
+
+.cyber-icon:hover .fa-whatsapp {
+    color: #25D366;
+    text-shadow: 0 0 20px #25D366;
+}
+
+.cyber-icon:hover .fa-linkedin {
+    color: #0077B5;
+    text-shadow: 0 0 20px #0077B5;
+}
+
+.cyber-icon:hover .fa-envelope {
+    color: var(--neon-blue);
+    text-shadow: 0 0 20px var(--neon-blue);
 }
