@@ -744,6 +744,209 @@ footer { text-align: center; padding: 40px; color: #666; font-size: 0.9rem; }
     text-shadow: 0 0 20px #E1306C;
 }
 
+/* =========================================
+   PERUBAHAN 1: FONT BODY LEBIH READABLE
+   ========================================= */
+
+/* Override font untuk teks paragraf biasa */
+p, .lang-desc, .card-text p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Roboto Mono tetap dipakai untuk elemen dekoratif/label */
+.tagline, .loading-text, .loading-subtext, .nav-link, .level, .date {
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+/* =========================================
+   PERUBAHAN 2: PERHALUS BACKGROUND GRID
+   ========================================= */
+
+/* Cari body di atas dan ubah opacity grid dari 0.1 ke 0.03
+   Tapi biar aman, kita override di sini saja */
+body {
+    background-image: 
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+}
+
+
+/* =========================================
+   PERUBAHAN 3: GLITCH TEXT EFFECT
+   ========================================= */
+
+.glitch-text {
+    position: relative;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text); /* Ambil teks dari atribut data-text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-header);
+    font-size: inherit;
+    font-weight: inherit;
+    text-transform: uppercase;
+    letter-spacing: inherit;
+}
+
+/* Layer glitch atas — warna Pink */
+.glitch-text::before {
+    color: var(--neon-pink);
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    animation: glitchAtas 3s infinite;
+    animation-delay: 1s;
+}
+
+/* Layer glitch bawah — warna Biru */
+.glitch-text::after {
+    color: var(--neon-blue);
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    animation: glitchBawah 3s infinite;
+    animation-delay: 1s;
+}
+
+@keyframes glitchAtas {
+    0%, 85%, 100% { transform: translate(0, 0); opacity: 0; }
+    87%  { transform: translate(-4px, 1px); opacity: 1; }
+    89%  { transform: translate(4px, -1px); opacity: 1; }
+    91%  { transform: translate(-2px, 2px); opacity: 1; }
+    93%  { transform: translate(0, 0); opacity: 0; }
+}
+
+@keyframes glitchBawah {
+    0%, 85%, 100% { transform: translate(0, 0); opacity: 0; }
+    87%  { transform: translate(4px, -1px); opacity: 1; }
+    89%  { transform: translate(-4px, 1px); opacity: 1; }
+    91%  { transform: translate(2px, -2px); opacity: 1; }
+    93%  { transform: translate(0, 0); opacity: 0; }
+}
+
+
+/* =========================================
+   PERUBAHAN 4: SECTION ACHIEVEMENTS
+   ========================================= */
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.achievement-card {
+    background: rgba(17, 17, 17, 0.85);
+    border-left: 4px solid;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    border-radius: 0 10px 10px 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efek shimmer di background card */
+.achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02));
+}
+
+.achievement-card:hover {
+    transform: translateX(8px);
+}
+
+.achievement-card.cyber-border-blue:hover {
+    box-shadow: -5px 0 20px var(--neon-blue), 0 0 30px rgba(0, 243, 255, 0.1);
+}
+
+.achievement-card.cyber-border-pink:hover {
+    box-shadow: -5px 0 20px var(--neon-pink), 0 0 30px rgba(255, 0, 255, 0.1);
+}
+
+.achievement-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+.achievement-card.cyber-border-blue .achievement-icon {
+    color: var(--neon-blue);
+    text-shadow: 0 0 15px var(--neon-blue);
+}
+
+.achievement-card.cyber-border-pink .achievement-icon {
+    color: var(--neon-pink);
+    text-shadow: 0 0 15px var(--neon-pink);
+}
+
+.achievement-card:hover .achievement-icon {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+.achievement-info h4 {
+    font-size: 0.95rem;
+    color: #fff;
+    margin: 8px 0 5px;
+    letter-spacing: 1px;
+}
+
+.achievement-info p {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin: 0;
+}
+
+.achievement-year {
+    font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .achievement-grid {
+        grid-template-columns: 1fr;
+    }
+    .achievement-card:hover {
+        transform: translateX(4px);
+    }
+}
+
+
+/* =========================================
+   BONUS: CUSTOM SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neon-blue);
+    border-radius: 3px;
+    box-shadow: 0 0 6px var(--neon-blue);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-pink);
+    box-shadow: 0 0 6px var(--neon-pink);
+}
+
 .cyber-icon:hover .fa-whatsapp {
     color: #25D366;
     text-shadow: 0 0 20px #25D366;
