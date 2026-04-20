@@ -231,26 +231,68 @@
 </section>
 
 <section id="portfolio" class="section reveal">
-        <div class="container">
-            <h2 class="neon-purple">>> Visual Archive</h2>
-            
-            <div class="cyber-card-container">
-                <div class="cyber-card">
-                    <div class="card-icon">
-                        <i class="fa-solid fa-folder-open neon-pulse"></i>
-                    </div>
-                    <div class="card-text">
-                        <h3>GRAPHIC DESIGN PORTFOLIO</h3>
-                        <p>A curated collection of visual identities, event posters, and creative assets. Stored securely in the cloud.</p>
-                        
-                        <a href="https://drive.google.com/drive/folders/1AsYd6_icYCEPGaNovGKaJpHK2Zeorrlk?usp=drive_link" target="_blank" class="btn cyber-btn full-width-btn">
-                            ACCESS DATABASE <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </div>
+    <div class="container">
+        <h2 class="neon-purple">>> Visual Archive</h2>
+        <p class="section-subtitle text-center" style="margin-bottom: 30px; color: #ccc; font-style: italic;">
+            A curated collection of visual identities, event posters, and creative assets.
+        </p>
+
+        <div class="portfolio-grid">
+
+            <!-- GANTI src="" dengan link lh3.googleusercontent.com lo -->
+            <div class="portfolio-item">
+                <img src="LINK_GAMBAR_1" alt="Design Work 1">
+                <div class="portfolio-overlay">
+                    <span>Visual Identity</span>
                 </div>
             </div>
+
+            <div class="portfolio-item">
+                <img src="LINK_GAMBAR_2" alt="Design Work 2">
+                <div class="portfolio-overlay">
+                    <span>Event Poster</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="LINK_GAMBAR_3" alt="Design Work 3">
+                <div class="portfolio-overlay">
+                    <span>Creative Asset</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="LINK_GAMBAR_4" alt="Design Work 4">
+                <div class="portfolio-overlay">
+                    <span>Graphic Design</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="LINK_GAMBAR_5" alt="Design Work 5">
+                <div class="portfolio-overlay">
+                    <span>Branding</span>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="LINK_GAMBAR_6" alt="Design Work 6">
+                <div class="portfolio-overlay">
+                    <span>Event Design</span>
+                </div>
+            </div>
+
         </div>
-    </section>
+
+        <!-- Tombol ke Drive tetap ada -->
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://drive.google.com/file/d/1P_TpTbtGlMqWDVrrdLCN-_XL3FJGcjqx" 
+               target="_blank" class="btn cyber-btn">
+                VIEW FULL PORTFOLIO <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+    </div>
+</section>
 
     <section id="education" class="section reveal">
     <div class="container">
@@ -533,7 +575,19 @@ function revealOnScroll() {
 
 window.addEventListener('scroll', revealOnScroll);
 revealOnScroll();
+        // Back to Top Button
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+});
     </script>
-
+<button id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+    <i class="fa-solid fa-chevron-up"></i>
+</button>
+    
 </body>
 </html>
