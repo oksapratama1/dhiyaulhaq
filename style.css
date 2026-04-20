@@ -1047,13 +1047,13 @@ CSS TAMBAHAN: TECH ARSENAL (SKILLS)
     box-shadow: 0 0 20px var(--neon-blue);
 }
 /* =========================================
-   PORTFOLIO GRID WITH HOVER OVERLAY
+   PORTFOLIO GRID 4x3
    ========================================= */
 
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
     margin-top: 10px;
 }
 
@@ -1062,7 +1062,7 @@ CSS TAMBAHAN: TECH ARSENAL (SKILLS)
     overflow: hidden;
     border: 1px solid #333;
     border-radius: 6px;
-    aspect-ratio: 4/3;
+    aspect-ratio: 1/1;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -1075,7 +1075,6 @@ CSS TAMBAHAN: TECH ARSENAL (SKILLS)
     display: block;
 }
 
-/* Overlay gelap + label pas hover */
 .portfolio-overlay {
     position: absolute;
     inset: 0;
@@ -1090,14 +1089,13 @@ CSS TAMBAHAN: TECH ARSENAL (SKILLS)
 
 .portfolio-overlay span {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--neon-purple);
     text-shadow: 0 0 10px var(--neon-purple);
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
-/* Efek hover */
 .portfolio-item:hover img {
     transform: scale(1.08);
 }
@@ -1111,46 +1109,18 @@ CSS TAMBAHAN: TECH ARSENAL (SKILLS)
     opacity: 1;
 }
 
-/* Responsif — 2 kolom di tablet, 1 kolom di HP kecil */
+/* Tablet — 2 kolom */
 @media (max-width: 768px) {
     .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* HP kecil — 2 kolom tetap */
 @media (max-width: 480px) {
     .portfolio-grid {
-        grid-template-columns: 1fr;
-    }
-}
-/* Kalau classnya cyber-border-blue */
-.cyber-border-blue:hover { 
-    border-color: var(--neon-blue); 
-    box-shadow: 0 0 15px var(--neon-blue);
-}
-.cyber-border-blue:hover .skill-icon { 
-    color: var(--neon-blue); 
-    text-shadow: 0 0 15px var(--neon-blue);
-}
-
-/* Kalau classnya cyber-border-purple (Kita manfaatin var yg udah ada) */
-.skill-card.cyber-border-purple:hover { 
-    border-color: var(--neon-purple); 
-    box-shadow: 0 0 15px var(--neon-purple);
-}
-.skill-card.cyber-border-purple:hover .skill-icon { 
-    color: var(--neon-purple); 
-    text-shadow: 0 0 15px var(--neon-purple);
-}
-
-/* Khusus HP biar gridnya ga terlalu dempet */
-@media (max-width: 768px) {
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr); /* Di HP jadi 2 kolom */
-        gap: 15px;
-    }
-    .skill-icon {
-        font-size: 2.5rem; /* Ikon agak kecil di HP */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
 }
 /* =========================================
